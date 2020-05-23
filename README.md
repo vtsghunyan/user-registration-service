@@ -9,9 +9,19 @@ simple java application from UserRegistrationApplication class
 
 or
 
-Build the application with maven, create jar file and run it from the jar file:
+From application root directory create jar file with maven command:
 - mvn package
+
+Then run command:
 - java -jar target/user-registration-service-0.0.1-SNAPSHOT.jar
+
+Also, possible to run from script file:
+
+For Windows run:
+- start.cmd
+
+For Linux system run:
+- ./start.sh
 
 Usage
 ------

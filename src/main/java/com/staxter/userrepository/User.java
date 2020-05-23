@@ -4,19 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotEmpty;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     private String id;
-    @NotEmpty(message = "First Name is a required field and should not be empty")
     private String firstName;
-    @NotEmpty(message = "Last Name is a required field and should not be empty")
     private String lastName;
-    @NotEmpty(message = "User Name is a required field and should not be empty")
     private String userName;
     @JsonProperty("password")
-    @NotEmpty(message = "Password is a required field and should not be empty")
     private String plainTextPassword;
     @JsonIgnore
     private String hashedPassword;

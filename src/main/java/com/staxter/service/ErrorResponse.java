@@ -1,12 +1,15 @@
 package com.staxter.service;
 
 public class ErrorResponse {
-    private final String code;
-    private final String description;
+    private String code;
+    private String description;
 
     public ErrorResponse() {
-        code = "USER_ALREADY_EXISTS";
-        description = "A user with the given username already exists";
+    }
+
+    public ErrorResponse(String code, String description) {
+        this.code = code;
+        this.description = description;
     }
 
     public String getCode() {

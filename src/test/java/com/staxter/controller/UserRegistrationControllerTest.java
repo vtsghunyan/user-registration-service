@@ -86,6 +86,25 @@ public class UserRegistrationControllerTest {
         assertEquals("USER_ALREADY_EXISTS", errorResponse.getCode());
     }
 
+    @Test
+    public void whenInvalidInput_thenReturnErrorMessage() throws Exception {
+        when(userRegistrationService.createUser(Mockito.any())).thenReturn(expectedUser);
+
+        requestUser.setPlainTextPassword("");
+        String inputJson = mapToJson(requestUser);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/userservice/register")
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(HttpStatus.BAD_REQUEST.value(), status, "Response status should be 400");
+
+        String content = mvcResult.getResponse().getContentAsString();
+        ErrorResponse errorResponse = mapFromJson(content, ErrorResponse.class);
+
+        assertEquals("INVALID_INPUT_FIELD", errorResponse.getCode());
+    }
+
     private String mapToJson(Object obj) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(obj);
